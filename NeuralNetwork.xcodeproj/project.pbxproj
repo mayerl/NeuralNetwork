@@ -17,7 +17,6 @@
 		D8A965D31D0F385D0022567B /* NeuralNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965C41D0F381A0022567B /* NeuralNetwork.cpp */; };
 		D8A965D41D0F385D0022567B /* NeuronLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965C61D0F381A0022567B /* NeuronLayer.cpp */; };
 		D8A965D51D0F385D0022567B /* TrainingPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965C81D0F381A0022567B /* TrainingPattern.cpp */; };
-		D8A965D81D0F386B0022567B /* ConnectionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965D61D0F386B0022567B /* ConnectionFactory.cpp */; };
 		D8A965EB1D0F387B0022567B /* ConstantLearningRateFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965D91D0F387B0022567B /* ConstantLearningRateFunction.cpp */; };
 		D8A965EC1D0F387B0022567B /* ExponentialLearningRateFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965DB1D0F387B0022567B /* ExponentialLearningRateFunction.cpp */; };
 		D8A965ED1D0F387B0022567B /* InputFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965DD1D0F387B0022567B /* InputFunction.cpp */; };
@@ -30,8 +29,9 @@
 		D8A965FA1D0F38910022567B /* BiasNeuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965F41D0F38910022567B /* BiasNeuron.cpp */; };
 		D8A965FB1D0F38910022567B /* InputNeuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965F61D0F38910022567B /* InputNeuron.cpp */; };
 		D8A965FC1D0F38910022567B /* Neuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965F81D0F38910022567B /* Neuron.cpp */; };
-		D8A965FF1D0F389F0022567B /* NeuralNetworkProperties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A965FD1D0F389F0022567B /* NeuralNetworkProperties.cpp */; };
-		D8E4C1991D49114B009177D4 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C1951D49114B009177D4 /* Util.cpp */; };
+		D8BF03671D52E437000E307F /* ConnectionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8BF03631D52E436000E307F /* ConnectionFactory.cpp */; };
+		D8BF03681D52E437000E307F /* NeuralNetworkProperties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8BF03651D52E436000E307F /* NeuralNetworkProperties.cpp */; };
+		D8BF036B1D52E456000E307F /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8BF03691D52E456000E307F /* Util.cpp */; };
 		D8E4C1ED1D4911F9009177D4 /* NeuralMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C1EC1D4911F9009177D4 /* NeuralMain.cpp */; };
 		D8E4C1F91D499550009177D4 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C1F81D499550009177D4 /* jsoncpp.cpp */; };
 		D8F2CC021D0F282E000DBE46 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8F2CC011D0F282E000DBE46 /* main.cpp */; };
@@ -79,8 +79,6 @@
 		D8A965C71D0F381A0022567B /* NeuronLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NeuronLayer.h; path = core/NeuronLayer.h; sourceTree = "<group>"; };
 		D8A965C81D0F381A0022567B /* TrainingPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TrainingPattern.cpp; path = core/TrainingPattern.cpp; sourceTree = "<group>"; };
 		D8A965C91D0F381A0022567B /* TrainingPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrainingPattern.h; path = core/TrainingPattern.h; sourceTree = "<group>"; };
-		D8A965D61D0F386B0022567B /* ConnectionFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectionFactory.cpp; path = factory/ConnectionFactory.cpp; sourceTree = "<group>"; };
-		D8A965D71D0F386B0022567B /* ConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionFactory.h; path = factory/ConnectionFactory.h; sourceTree = "<group>"; };
 		D8A965D91D0F387B0022567B /* ConstantLearningRateFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConstantLearningRateFunction.cpp; path = functions/ConstantLearningRateFunction.cpp; sourceTree = "<group>"; };
 		D8A965DA1D0F387B0022567B /* ConstantLearningRateFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantLearningRateFunction.h; path = functions/ConstantLearningRateFunction.h; sourceTree = "<group>"; };
 		D8A965DB1D0F387B0022567B /* ExponentialLearningRateFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExponentialLearningRateFunction.cpp; path = functions/ExponentialLearningRateFunction.cpp; sourceTree = "<group>"; };
@@ -105,11 +103,13 @@
 		D8A965F71D0F38910022567B /* InputNeuron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputNeuron.h; path = neuron/InputNeuron.h; sourceTree = "<group>"; };
 		D8A965F81D0F38910022567B /* Neuron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Neuron.cpp; path = neuron/Neuron.cpp; sourceTree = "<group>"; };
 		D8A965F91D0F38910022567B /* Neuron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Neuron.h; path = neuron/Neuron.h; sourceTree = "<group>"; };
-		D8A965FD1D0F389F0022567B /* NeuralNetworkProperties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NeuralNetworkProperties.cpp; path = properties/NeuralNetworkProperties.cpp; sourceTree = "<group>"; };
-		D8A965FE1D0F389F0022567B /* NeuralNetworkProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NeuralNetworkProperties.h; path = properties/NeuralNetworkProperties.h; sourceTree = "<group>"; };
+		D8BF03631D52E436000E307F /* ConnectionFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConnectionFactory.cpp; path = core/ConnectionFactory.cpp; sourceTree = "<group>"; };
+		D8BF03641D52E436000E307F /* ConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnectionFactory.h; path = core/ConnectionFactory.h; sourceTree = "<group>"; };
+		D8BF03651D52E436000E307F /* NeuralNetworkProperties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NeuralNetworkProperties.cpp; path = core/NeuralNetworkProperties.cpp; sourceTree = "<group>"; };
+		D8BF03661D52E436000E307F /* NeuralNetworkProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NeuralNetworkProperties.h; path = core/NeuralNetworkProperties.h; sourceTree = "<group>"; };
+		D8BF03691D52E456000E307F /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = NeuralNetwork/util/Util.cpp; sourceTree = SOURCE_ROOT; };
+		D8BF036A1D52E456000E307F /* Util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Util.hpp; path = NeuralNetwork/util/Util.hpp; sourceTree = SOURCE_ROOT; };
 		D8E4C0B51D485EEC009177D4 /* NeuralHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NeuralHeader.h; sourceTree = "<group>"; };
-		D8E4C1951D49114B009177D4 /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
-		D8E4C1961D49114B009177D4 /* Util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
 		D8E4C1EC1D4911F9009177D4 /* NeuralMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NeuralMain.cpp; sourceTree = "<group>"; };
 		D8E4C1F61D499550009177D4 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "json-forwards.h"; path = "json/json-forwards.h"; sourceTree = "<group>"; };
 		D8E4C1F71D499550009177D4 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = json/json.h; sourceTree = "<group>"; };
@@ -132,6 +132,10 @@
 		D8A965C11D0F38080022567B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				D8BF03631D52E436000E307F /* ConnectionFactory.cpp */,
+				D8BF03641D52E436000E307F /* ConnectionFactory.h */,
+				D8BF03651D52E436000E307F /* NeuralNetworkProperties.cpp */,
+				D8BF03661D52E436000E307F /* NeuralNetworkProperties.h */,
 				D8A965C21D0F381A0022567B /* Connection.cpp */,
 				D8A965C31D0F381A0022567B /* Connection.h */,
 				D8A965C41D0F381A0022567B /* NeuralNetwork.cpp */,
@@ -144,15 +148,6 @@
 				D822B8D71D380F5A00A4FDFF /* DataSet.h */,
 			);
 			name = core;
-			sourceTree = "<group>";
-		};
-		D8A965CE1D0F38250022567B /* factory */ = {
-			isa = PBXGroup;
-			children = (
-				D8A965D61D0F386B0022567B /* ConnectionFactory.cpp */,
-				D8A965D71D0F386B0022567B /* ConnectionFactory.h */,
-			);
-			name = factory;
 			sourceTree = "<group>";
 		};
 		D8A965CF1D0F382B0022567B /* functions */ = {
@@ -203,20 +198,11 @@
 			name = neuron;
 			sourceTree = "<group>";
 		};
-		D8A965D11D0F38360022567B /* properties */ = {
-			isa = PBXGroup;
-			children = (
-				D8A965FD1D0F389F0022567B /* NeuralNetworkProperties.cpp */,
-				D8A965FE1D0F389F0022567B /* NeuralNetworkProperties.h */,
-			);
-			name = properties;
-			sourceTree = "<group>";
-		};
 		D8E4C1911D49114B009177D4 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				D8E4C1951D49114B009177D4 /* Util.cpp */,
-				D8E4C1961D49114B009177D4 /* Util.hpp */,
+				D8BF03691D52E456000E307F /* Util.cpp */,
+				D8BF036A1D52E456000E307F /* Util.hpp */,
 			);
 			name = util;
 			path = ../../Util/Util;
@@ -254,10 +240,8 @@
 				D8E4C1F31D499335009177D4 /* json */,
 				D8E4C1911D49114B009177D4 /* util */,
 				D8A965C11D0F38080022567B /* core */,
-				D8A965CE1D0F38250022567B /* factory */,
 				D8A965CF1D0F382B0022567B /* functions */,
 				D8A965D01D0F38310022567B /* neuron */,
-				D8A965D11D0F38360022567B /* properties */,
 				D8F2CC011D0F282E000DBE46 /* main.cpp */,
 				D8E4C0B51D485EEC009177D4 /* NeuralHeader.h */,
 				D8E4C1EC1D4911F9009177D4 /* NeuralMain.cpp */,
@@ -325,14 +309,13 @@
 				D8F2CC021D0F282E000DBE46 /* main.cpp in Sources */,
 				D8A965F01D0F387B0022567B /* Sigmoid.cpp in Sources */,
 				D822B8D81D380F5A00A4FDFF /* DataSet.cpp in Sources */,
+				D8BF03681D52E437000E307F /* NeuralNetworkProperties.cpp in Sources */,
 				D8A965EF1D0F387B0022567B /* LinearLearningRateFunction.cpp in Sources */,
 				D8A965F21D0F387B0022567B /* TransferFunction.cpp in Sources */,
 				D822B8BF1D32D7D000A4FDFF /* CostFunction.cpp in Sources */,
 				D822B8C21D32D80800A4FDFF /* QuadraticCostFunction.cpp in Sources */,
 				D8A965FB1D0F38910022567B /* InputNeuron.cpp in Sources */,
 				D8A965F11D0F387B0022567B /* Step.cpp in Sources */,
-				D8A965D81D0F386B0022567B /* ConnectionFactory.cpp in Sources */,
-				D8A965FF1D0F389F0022567B /* NeuralNetworkProperties.cpp in Sources */,
 				D8A965FA1D0F38910022567B /* BiasNeuron.cpp in Sources */,
 				D8A965F31D0F387B0022567B /* WeightedSum.cpp in Sources */,
 				D8E4C1F91D499550009177D4 /* jsoncpp.cpp in Sources */,
@@ -341,6 +324,7 @@
 				D8E4C1ED1D4911F9009177D4 /* NeuralMain.cpp in Sources */,
 				D8A965EE1D0F387B0022567B /* LearningRateFunction.cpp in Sources */,
 				D8A965D41D0F385D0022567B /* NeuronLayer.cpp in Sources */,
+				D8BF03671D52E437000E307F /* ConnectionFactory.cpp in Sources */,
 				D876D3E21D12BEA200061A27 /* Softmax.cpp in Sources */,
 				D8A965ED1D0F387B0022567B /* InputFunction.cpp in Sources */,
 				D8A965D51D0F385D0022567B /* TrainingPattern.cpp in Sources */,
@@ -349,7 +333,7 @@
 				D822B8C51D32E89400A4FDFF /* CrossEntropyCostFunction.cpp in Sources */,
 				D8A965EB1D0F387B0022567B /* ConstantLearningRateFunction.cpp in Sources */,
 				D822B8DF1D3864CF00A4FDFF /* Tanh.cpp in Sources */,
-				D8E4C1991D49114B009177D4 /* Util.cpp in Sources */,
+				D8BF036B1D52E456000E307F /* Util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

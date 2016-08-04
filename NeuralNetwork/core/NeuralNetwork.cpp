@@ -16,6 +16,7 @@
 #include <cmath>
 #include <algorithm>
 #include <time.h>
+#include <cfloat>
 
 using namespace std;
 

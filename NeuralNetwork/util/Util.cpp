@@ -53,7 +53,7 @@ std::vector<std::string> Util::split(std::string &s, char delim) {
 #include <windows.h>
 #include <conio.h>
 
-void Util::getdir(std::string dir, std::vector<std::string> &files)
+int Util::getdir(std::string dir, std::vector<std::string> &files)
 {
 	std::string search_path = dir + "/*.*";
 	WIN32_FIND_DATA fd;
@@ -68,6 +68,8 @@ void Util::getdir(std::string dir, std::vector<std::string> &files)
 		} while (::FindNextFile(hFind, &fd));
 		::FindClose(hFind);
 	}
+	
+	return 0;
 }
 
 int Util::getKey() {
@@ -82,7 +84,7 @@ int Util::getKey() {
 #include <unistd.h>
 #include <termios.h>
 
-void Util::getdir (std::string dir, std::vector<std::string> &files)
+int Util::getdir (std::string dir, std::vector<std::string> &files)
 {
 	DIR *dp;
 	struct dirent *dirp;
@@ -95,6 +97,8 @@ void Util::getdir (std::string dir, std::vector<std::string> &files)
 		files.push_back(std::string(dirp->d_name));
 	}
 	closedir(dp);
+	
+	return 0;
 }
 
 int Util::getKey() {
