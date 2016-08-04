@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <string>
-#include "json/json.h"
+#include "../json/json.h"
 
 typedef enum {QUADRATIC, CROSS_ENTROPY} costFuncTypes;
 

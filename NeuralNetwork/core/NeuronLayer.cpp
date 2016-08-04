@@ -6,9 +6,9 @@
  */
 
 #include "NeuronLayer.h"
-#include "Neuron.h"
-#include "BiasNeuron.h"
-#include "Softmax.h"
+#include "../neuron/Neuron.h"
+#include "../neuron/BiasNeuron.h"
+#include "../functions/Softmax.h"
 #include <sstream>
 #include <iostream>
 

@@ -6,15 +6,16 @@
  */
 
 #include "NeuralNetwork.h"
-#include "InputNeuron.h"
+#include "../neuron/InputNeuron.h"
 #include "NeuronLayer.h"
-#include "Step.h"
-#include "Sigmoid.h"
-#include "ConnectionFactory.h"
-#include "CostFunction.h"
+#include "../functions/Step.h"
+#include "../functions/Sigmoid.h"
+#include "../core/ConnectionFactory.h"
+#include "../functions//CostFunction.h"
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <time.h>
 
 using namespace std;
 
@@ -30,6 +31,7 @@ NeuralNetwork::NeuralNetwork(int n_inputs, int n_outputs, NeuralNetworkPropertie
 	this->n_outputs = n_outputs;
 	this->properties = properties;
 	
+	this->dataSet = NULL;
 	this->trainingData = NULL;
 	this->testingData = NULL;
 	
@@ -205,7 +207,7 @@ void NeuralNetwork::train() throw() {
 
 	if (properties->verbose) cout << "Starting training..." << endl;
 
-    double totalError = MAXFLOAT;
+    double totalError = DBL_MAX;
     int errorCount = 1;
     double errorRate = 1;
     double output = 0;
@@ -215,10 +217,12 @@ void NeuralNetwork::train() throw() {
 	
 	vector<double> bestWeights;
 	int bestEpoch = 0;
-	double bestError = MAXFLOAT;
+	double bestError = DBL_MAX;
 
 	// Stop training only if we hit min error or max number of iterations
     while(totalError > properties->minErrorRate && epoch < properties->maxIte) {
+
+		if (this->signal_abort) break;
 		
 		// Shuffle the training set each epoch to prevent over fitting training
 		std::random_shuffle(trainingData->data.begin(), trainingData->data.end());
@@ -357,36 +361,45 @@ void NeuralNetwork::train() throw() {
 
     }
 
-	cout << endl;
-	cout << "Training complete" << endl;
-	cout << "Epochs elapsed: " << epoch << endl;
-	cout << properties->costFunction->name << ": " << totalError << endl;
-	cout << "Error rate: " << errorRate << endl;
-	cout << "Time elapsed: " << (time(0) - startTime) << " seconds" << endl;
-	cout << "Best epoch: " << bestEpoch << ", with MSE: " << bestError << endl;
-	cout << endl;
-	
-	if (properties->useBestEpoch) {
-		
-		int k = 0;
-		for (NeuronLayer *layer : layers) {
-			
-			for (Neuron *neuron : layer->getNeurons()) {
-				
-				for (Connection *conn : neuron->getOutputConnections()) {
-					
-					conn->setWeight(bestWeights.at(k));
-					k++;
-					
+	if (signal_abort) {
+
+		cout << "Training aborted." << endl;
+		this->signal_abort = false;
+
+	} else {
+
+		cout << endl;
+		cout << "Training complete" << endl;
+		cout << "Epochs elapsed: " << epoch << endl;
+		cout << properties->costFunction->name << ": " << totalError << endl;
+		cout << "Error rate: " << errorRate << endl;
+		cout << "Time elapsed: " << (time(0) - startTime) << " seconds" << endl;
+		cout << "Best epoch: " << bestEpoch << ", with MSE: " << bestError << endl;
+		cout << endl;
+
+		if (properties->useBestEpoch) {
+
+			int k = 0;
+			for (NeuronLayer *layer : layers) {
+
+				for (Neuron *neuron : layer->getNeurons()) {
+
+					for (Connection *conn : neuron->getOutputConnections()) {
+
+						conn->setWeight(bestWeights.at(k));
+						k++;
+
+					}
+
 				}
-				
+
 			}
-			
+
 		}
-		
+
+		trained = true;
+
 	}
-	
-	trained = true;
 
 }
 
@@ -399,7 +412,10 @@ void NeuralNetwork::test() {
 	std::vector<double> outputs;
 	
 	//Start testing
+	this->testing = true;
 	for (DataRow *row : this->testingData->data) {
+
+		if (this->signal_abort) break;
 		
 		outputs = this->run(row->inputs, this->properties->verbose);
 		
@@ -439,13 +455,22 @@ void NeuralNetwork::test() {
 		totalTests++;
 		
 	}
-	
-	errorRate = (double)errorCount / (double)totalTests;
-	
-	cout << "Testing finished." << endl;
-	cout << "Accuracy: " << (1-errorRate) << endl;
-	
-	this->accuracy = (1-errorRate);
+
+	if (signal_abort) {
+
+		cout << "Testing aborted." << endl;
+		this->signal_abort = false;
+
+	} else {
+
+		errorRate = (double)errorCount / (double)totalTests;
+
+		cout << "Testing finished." << endl;
+		cout << "Accuracy: " << (1 - errorRate) << endl;
+
+		this->accuracy = (1 - errorRate);
+
+	}
 	this->testing = false;
 }
 
@@ -501,6 +526,10 @@ void NeuralNetwork::reset() {
 		divideDataSet();
 	}
 	
+}
+
+void NeuralNetwork::abort() {
+	this->signal_abort = true;
 }
 
 NeuralNetwork::~NeuralNetwork() {

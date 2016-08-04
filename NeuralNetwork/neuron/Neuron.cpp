@@ -6,8 +6,8 @@
  */
 
 #include "Neuron.h"
-#include "Sigmoid.h"
-#include "WeightedSum.h"
+#include "../functions/Sigmoid.h"
+#include "../functions/WeightedSum.h"
 #include "BiasNeuron.h"
 
 Neuron::Neuron(std::string id) {

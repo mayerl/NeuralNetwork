@@ -6,73 +6,49 @@
 //  Copyright © 2016 Mayer Levy. All rights reserved.
 //
 
-#include <pthread.h>
-#include <csignal>
 #include <stdlib.h>
-#include <unistd.h>
-#include <termios.h>
+#include <thread>
 #include "NeuralHeader.h"
 
 using namespace std;
-
 bool abortOp = false;
-
-int Get_Key (void) {
-	int key;
-	struct termios oldt, newt;
-	tcgetattr( STDIN_FILENO, &oldt); // 1473
-	memcpy((void *)&newt, (void *)&oldt, sizeof(struct termios));
-	newt.c_lflag &= ~(ICANON);  // Reset ICANON
-	newt.c_lflag &= ~(ECHO);    // Echo off, after these two .c_lflag = 1217
-	tcsetattr( STDIN_FILENO, TCSANOW, &newt); // 1217
-	key=getchar(); // works like "getch()"
-	tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
-	return key;
-}
+bool endCmd = false;
 
 struct threadTraining_args {
 	NeuralNetwork* net;
 };
 
-void *threadTraining(void *argp) {
-	
-	struct threadTraining_args *args = (struct threadTraining_args*)argp;
-	args->net->train();
-	
-	return NULL;
-	
-}
+void commandThread(NeuralNetwork * net) {
 
-void *threadTesting(void *argp) {
-	
-	struct threadTraining_args *args = (struct threadTraining_args*)argp;
-	args->net->test();
-	
-	return NULL;
-	
-}
-
-void *threadCommand(void *argp) {
-	
-	struct threadTraining_args *args = (struct threadTraining_args*)argp;
-	
 	do {
-		
-		char c = Get_Key();
-		
-		if (c == 'q') {
-			
-			abortOp = true;
-			
-		} else if (c == 'v') {
-			
-			args->net->setVerbose(!args->net->getProperties()->verbose);
-			
+
+		char c = Util::getKey();
+
+		if (abortOp == true) {
+
+			endCmd = true;
+			break;
+
 		}
-		
+		else {
+
+			if (c == 'q') {
+
+				net->abort();
+				abortOp = true;
+				endCmd = true;
+
+			}
+			else if (c == 'v') {
+
+				net->setVerbose(!net->getProperties()->verbose);
+
+			}
+
+		}
+
 	} while (!abortOp);
-	
-	return NULL;
+
 }
 
 void runNeuralNetwork() {
@@ -111,8 +87,6 @@ void runNeuralNetwork() {
 				
 			} else {
 				
-				abortOp = false;
-				
 				char verbose;
 				cout << "Verbose mode on? [y/n]: ";
 				cin >> verbose;
@@ -121,27 +95,17 @@ void runNeuralNetwork() {
 				else
 					net->setVerbose(false);
 				
-				cout << "Training in progress..." << endl;
-				cout << "Type 'q' to quit or 'v' to see progress" << endl;
+				char c;
+				cout << endl << "Press any key to start training. At any time, press 'q' to abort or 'v' to toggle verbose." << endl << endl;
+				c = Util::getKey();
 				
 				// Start training
-				pthread_t trainingThread;
-				pthread_t commandThread;
-				struct threadTraining_args t_params;
-				t_params.net = net;
-				pthread_create(&trainingThread, NULL, threadTraining, &t_params);
-				pthread_create(&commandThread, NULL, threadCommand, &t_params);
-				
-				while (!net->trained && !abortOp);
-				
+				abortOp = endCmd = false;
+				std::thread(commandThread, net).detach();
+				net->train();
 				abortOp = true;
-				
-				pthread_cancel(trainingThread);
-				pthread_cancel(commandThread);
-				
-				if (!net->trained) {
-					cout << "Training aborted by user!" << endl;
-				}
+				cout << endl << "Training finished. Press any key to continue..." << endl << endl;
+				while (!endCmd);
 				
 			}
 			
@@ -157,8 +121,6 @@ void runNeuralNetwork() {
 				
 			} else {
 			
-				abortOp = false;
-				
 				char verbose;
 				cout << "Verbose mode on? [y/n]: ";
 				cin >> verbose;
@@ -167,29 +129,19 @@ void runNeuralNetwork() {
 				else
 					net->setVerbose(false);
 				
-				cout << "Testing in progress..." << endl;
-				cout << "Type 'q' to quit or 'v' to toggle verbose" << endl << endl;
+				char c;
+				cout << endl << "Press any key to start test. At any time, press 'q' to abort or 'v' to toggle verbose." << endl << endl;
+				c = Util::getKey();
 				
 				// Start training
-				pthread_t testingThread;
-				pthread_t commandThread;
-				struct threadTraining_args t_params;
-				t_params.net = net;
-				pthread_create(&testingThread, NULL, threadTesting, &t_params);
-				pthread_create(&commandThread, NULL, threadCommand, &t_params);
-				
-				net->testing = true;
-				
-				while (net->testing && !abortOp);
-				
+				abortOp = endCmd = false;
+				std::thread t(commandThread, net);
+				t.detach();
+				net->test();
 				abortOp = true;
+				cout << endl << "Testing finished. Press any key to continue..." << endl << endl;
+				while (!endCmd);
 				
-				pthread_cancel(testingThread);
-				pthread_cancel(commandThread);
-				
-				if (net->testing) {
-					cout << "Testing aborted by user!" << endl;
-				}
 				
 			}
 			
@@ -256,7 +208,7 @@ void initNeuralNetwork(NeuralNetwork **net) {
 	double eps = 0.1;
 	double minErrorRate = 0.001;
 	double momentum = 0.1;
-	double maxIte = 1000;
+	int maxIte = 1000;
 	int n_hiddenLayers = 1;
 	int n_hiddenNeurons = 10;
 	double trainingProportion = 0.8;
@@ -589,28 +541,54 @@ void batchRunNeuralNetwork(NeuralNetwork *net) {
 		
 		cout << "No dataset found!" << endl;
 		
-	} else {
-		
+	}
+	else {
+
 		int n;
 		cout << "How many times should the network run? ";
 		cin >> n;
-		
+
+		char verbose;
+		cout << "Verbose mode on? [y/n]: ";
+		cin >> verbose;
+		if (verbose == 'y')
+			net->setVerbose(true);
+		else
+			net->setVerbose(false);
+
 		std::vector<double> results;
-		
+
+		char c;
+		cout << endl << "Press any key to start running. At any time, press 'q' to abort or 'v' to toggle verbose." << endl << endl;
+		c = Util::getKey();
+
+		// Start training
+		abortOp = endCmd = false;
+		std::thread t(commandThread, net);
+		t.detach();
+
 		for (int i = 0; i < n; i++) {
-			
+
 			net->reset();
+
 			net->train();
+			if (abortOp) break;
 			net->test();
-			
+			if (abortOp) break;
+
 			results.push_back(net->accuracy);
-			
+
 		}
-		
-		cout << endl;
-		cout << "Batch finished." << endl;
+
+		abortOp = true;
+		cout << endl << "Batch finished. Press any key to continue..." << endl << endl;
+		while (!endCmd);
+
 		cout << "Results: ";
-		for (double d : results) cout << d << ",";
+		for (unsigned int i = 0; i < results.size(); i++) {
+			if (i != 0) cout << ", ";
+			cout << results[i];
+		}
 		cout << endl;
 		cout << endl;
 		

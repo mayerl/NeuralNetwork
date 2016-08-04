@@ -6,7 +6,7 @@
  */
 
 #include "WeightedSum.h"
-#include "Neuron.h"
+#include "../neuron/Neuron.h"
 
 WeightedSum::WeightedSum() {
 	// TODO Auto-generated constructor stub

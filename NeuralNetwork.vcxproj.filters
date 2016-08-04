@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{bb8ce9ca-a66e-4f02-8cac-20ab050e92d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\functions">
+      <UniqueIdentifier>{164bf366-0311-4693-a304-489d0ef2c340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\neuron">
+      <UniqueIdentifier>{4729f01a-a60b-4286-a8e1-a3decc023418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\json">
+      <UniqueIdentifier>{d58561c9-a846-48ab-8b70-d78f5587be35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{5b8761ff-24de-42b2-9ee6-1369f3e19f87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\functions">
+      <UniqueIdentifier>{5554ea49-f781-4137-9039-4e4fb275a314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\neuron">
+      <UniqueIdentifier>{ee83a340-7c0b-420f-a42d-ef303048104a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\json">
+      <UniqueIdentifier>{6aebb98d-af33-4786-90a5-258daff8ef45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{42f386dd-ed5e-49a5-a608-c006e3f9490c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{4a6cfd90-1ebd-4787-9e4e-fba614a7c3fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="neuralnetwork\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\core\NeuralNetwork.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\core\NeuronLayer.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\LearningRateFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\LinearLearningRateFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\QuadraticCostFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\Sigmoid.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\Softmax.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\Step.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\Tanh.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\TransferFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\WeightedSum.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\CostFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\CrossEntropyCostFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\ConstantLearningRateFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\ExponentialLearningRateFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\functions\InputFunction.cpp">
+      <Filter>Source Files\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\neuron\BiasNeuron.cpp">
+      <Filter>Source Files\neuron</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\neuron\InputNeuron.cpp">
+      <Filter>Source Files\neuron</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\neuron\Neuron.cpp">
+      <Filter>Source Files\neuron</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\json\jsoncpp.cpp">
+      <Filter>Source Files\json</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\core\DataSet.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\core\TrainingPattern.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\core\Connection.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\core\NeuralNetworkProperties.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNetwork\core\ConnectionFactory.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuralNetwork\util\Util.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="neuralnetwork\NeuralMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="neuralnetwork\core\DataSet.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\NeuralHeader.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\core\NeuralNetwork.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\core\NeuronLayer.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\CostFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\CrossEntropyCostFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\ExponentialLearningRateFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\InputFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\LearningRateFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\LinearLearningRateFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\QuadraticCostFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\Sigmoid.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\Softmax.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\Step.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\Tanh.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\TransferFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\WeightedSum.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\neuron\BiasNeuron.h">
+      <Filter>Header Files\neuron</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\neuron\InputNeuron.h">
+      <Filter>Header Files\neuron</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\neuron\Neuron.h">
+      <Filter>Header Files\neuron</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\core\TrainingPattern.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\functions\ConstantLearningRateFunction.h">
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\json\json.h">
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\json\json-forwards.h">
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="neuralnetwork\core\Connection.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNetwork\core\NeuralNetworkProperties.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNetwork\core\ConnectionFactory.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralNetwork\util\Util.hpp">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

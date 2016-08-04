@@ -8,10 +8,10 @@
 #ifndef NEURALNETWORK_H_
 #define NEURALNETWORK_H_
 
-#include "NeuralNetworkProperties.h"
-#include "DataSet.h"
-#include "NeuronLayer.h"
-#include "json/json.h"
+#include "../core/NeuralNetworkProperties.h"
+#include "../core/DataSet.h"
+#include "../core/NeuronLayer.h"
+#include "../json/json.h"
 #include <vector>
 
 class NeuralNetwork {
@@ -42,6 +42,7 @@ public:
 	void reset();
 	void setTrainingData(DataSet *data);
 	void setTestingData(DataSet *data);
+	void abort();
 
 private:
 
@@ -51,6 +52,7 @@ private:
 	DataSet *dataSet;
 	DataSet *trainingData;
 	DataSet *testingData;
+	bool signal_abort = false;
 	
 	void createLayers();
 	void divideDataSet();

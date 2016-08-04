@@ -8,7 +8,7 @@
 #ifndef INPUTFUNCTION_H_
 #define INPUTFUNCTION_H_
 
-#include "Connection.h"
+#include "../core/Connection.h"
 #include <vector>
 
 class InputFunction {

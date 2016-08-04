@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{412B6ACE-4068-4397-8FC1-4E5DEE3B8052}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="neuralnetwork\core\Connection.cpp" />
+    <ClCompile Include="NeuralNetwork\core\ConnectionFactory.cpp" />
+    <ClCompile Include="neuralnetwork\core\DataSet.cpp" />
+    <ClCompile Include="neuralnetwork\core\NeuralNetwork.cpp" />
+    <ClCompile Include="neuralnetwork\core\NeuronLayer.cpp" />
+    <ClCompile Include="neuralnetwork\core\TrainingPattern.cpp" />
+    <ClCompile Include="neuralnetwork\functions\ConstantLearningRateFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\CostFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\CrossEntropyCostFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\ExponentialLearningRateFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\InputFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\LearningRateFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\LinearLearningRateFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\QuadraticCostFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\Sigmoid.cpp" />
+    <ClCompile Include="neuralnetwork\functions\Softmax.cpp" />
+    <ClCompile Include="neuralnetwork\functions\Step.cpp" />
+    <ClCompile Include="neuralnetwork\functions\Tanh.cpp" />
+    <ClCompile Include="neuralnetwork\functions\TransferFunction.cpp" />
+    <ClCompile Include="neuralnetwork\functions\WeightedSum.cpp" />
+    <ClCompile Include="neuralnetwork\json\jsoncpp.cpp" />
+    <ClCompile Include="neuralnetwork\main.cpp" />
+    <ClCompile Include="neuralnetwork\NeuralMain.cpp" />
+    <ClCompile Include="neuralnetwork\neuron\BiasNeuron.cpp" />
+    <ClCompile Include="neuralnetwork\neuron\InputNeuron.cpp" />
+    <ClCompile Include="neuralnetwork\neuron\Neuron.cpp" />
+    <ClCompile Include="neuralnetwork\core\NeuralNetworkProperties.cpp" />
+    <ClCompile Include="NeuralNetwork\util\Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="neuralnetwork\core\Connection.h" />
+    <ClInclude Include="NeuralNetwork\core\ConnectionFactory.h" />
+    <ClInclude Include="neuralnetwork\core\DataSet.h" />
+    <ClInclude Include="neuralnetwork\core\NeuralNetwork.h" />
+    <ClInclude Include="NeuralNetwork\core\NeuralNetworkProperties.h" />
+    <ClInclude Include="neuralnetwork\core\NeuronLayer.h" />
+    <ClInclude Include="neuralnetwork\core\TrainingPattern.h" />
+    <ClInclude Include="neuralnetwork\functions\ConstantLearningRateFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\CostFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\CrossEntropyCostFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\ExponentialLearningRateFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\InputFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\LearningRateFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\LinearLearningRateFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\QuadraticCostFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\Sigmoid.h" />
+    <ClInclude Include="neuralnetwork\functions\Softmax.h" />
+    <ClInclude Include="neuralnetwork\functions\Step.h" />
+    <ClInclude Include="neuralnetwork\functions\Tanh.h" />
+    <ClInclude Include="neuralnetwork\functions\TransferFunction.h" />
+    <ClInclude Include="neuralnetwork\functions\WeightedSum.h" />
+    <ClInclude Include="neuralnetwork\json\json-forwards.h" />
+    <ClInclude Include="neuralnetwork\json\json.h" />
+    <ClInclude Include="neuralnetwork\NeuralHeader.h" />
+    <ClInclude Include="neuralnetwork\neuron\BiasNeuron.h" />
+    <ClInclude Include="neuralnetwork\neuron\InputNeuron.h" />
+    <ClInclude Include="neuralnetwork\neuron\Neuron.h" />
+    <ClInclude Include="NeuralNetwork\util\Util.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

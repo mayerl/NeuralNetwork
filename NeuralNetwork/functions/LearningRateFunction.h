@@ -9,7 +9,7 @@
 #define LEARNINGRATEFUNCTION_H_
 
 #include <string>
-#include "json/json.h"
+#include "../json/json.h"
 
 typedef enum {CONSTANT, LINEAR, EXPONENTIAL} learningFuncTypes;
 

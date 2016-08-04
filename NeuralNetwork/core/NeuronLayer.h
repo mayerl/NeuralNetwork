@@ -9,9 +9,7 @@
 #define NEURONLAYER_H_
 
 #include <vector>
-#include "Neuron.h"
-
-typedef std::vector<std::unique_ptr<Neuron>> NeuronVector;
+#include "../neuron/Neuron.h"
 
 class NeuronLayer {
 public:

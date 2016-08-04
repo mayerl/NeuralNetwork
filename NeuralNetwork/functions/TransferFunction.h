@@ -9,7 +9,7 @@
 #define TRANSFERFUNCTION_H_
 
 #include <vector>
-#include "json/json.h"
+#include "../json/json.h"
 
 typedef enum {STEP, SIGMOID, TANH, SOFTMAX} transferFuncTypes;
 

@@ -10,8 +10,8 @@
 
 #include <string>
 #include <vector>
-#include "TransferFunction.h"
-#include "InputFunction.h"
+#include "../functions/TransferFunction.h"
+#include "../functions/InputFunction.h"
 
 class Connection;
 class InputFunction;

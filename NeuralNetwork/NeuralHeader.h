@@ -17,7 +17,7 @@
 #include <ctime>
 #include <algorithm>
 
-#include "Util.hpp"
+#include "util/Util.hpp"
 
 #include "json/json.h"
 
@@ -29,7 +29,7 @@
 #include "functions/ConstantLearningRateFunction.h"
 #include "functions/ExponentialLearningRateFunction.h"
 #include "functions/LinearLearningRateFunction.h"
-#include "properties/NeuralNetworkProperties.h"
+#include "core/NeuralNetworkProperties.h"
 #include "core/Connection.h"
 #include "functions/InputFunction.h"
 #include "functions/WeightedSum.h"
@@ -40,7 +40,7 @@
 #include "core/NeuronLayer.h"
 #include "core/TrainingPattern.h"
 #include "core/NeuralNetwork.h"
-#include "factory/ConnectionFactory.h"
+#include "core/ConnectionFactory.h"
 #include "functions/CrossEntropyCostFunction.h"
 #include "functions/QuadraticCostFunction.h"
 #include "core/DataSet.h"

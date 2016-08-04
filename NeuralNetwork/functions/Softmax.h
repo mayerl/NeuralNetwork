@@ -10,7 +10,7 @@
 #define Softmax_h
 
 #include "TransferFunction.h"
-#include "NeuronLayer.h"
+#include "../core/NeuronLayer.h"
 #include <vector>
 
 class Softmax : public TransferFunction {

@@ -9,7 +9,7 @@
 #define WEIGHTEDSUM_H_
 
 #include "InputFunction.h"
-#include "Connection.h"
+#include "../core/Connection.h"
 #include <vector>
 
 class WeightedSum : public InputFunction {
