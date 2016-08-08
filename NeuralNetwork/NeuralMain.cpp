@@ -566,6 +566,8 @@ void batchRunNeuralNetwork(NeuralNetwork *net) {
 		abortOp = endCmd = false;
 		std::thread t(commandThread, net);
 		t.detach();
+		
+		results.clear();
 
 		for (int i = 0; i < n; i++) {
 

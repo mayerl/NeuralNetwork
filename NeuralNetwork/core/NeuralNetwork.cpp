@@ -430,6 +430,11 @@ void NeuralNetwork::test() {
 		for (int i = 0; i < outputs.size(); i++) {
 			if (outputs[i] > outputs[outClassIndex]) outClassIndex = i;
 		}
+		if (outClassIndex != expClassIndex) {
+			
+			errorCount++;
+			
+		}
 		
 		if (this->properties->verbose) {
 		
