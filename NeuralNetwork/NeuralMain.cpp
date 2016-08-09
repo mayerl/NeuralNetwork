@@ -102,6 +102,7 @@ void runNeuralNetwork() {
 				// Start training
 				abortOp = endCmd = false;
 				std::thread(commandThread, net).detach();
+				cout << "Training in progres... " << endl << endl;
 				net->train();
 				abortOp = true;
 				cout << endl << "Training finished. Press any key to continue..." << endl << endl;
@@ -139,8 +140,8 @@ void runNeuralNetwork() {
 				
 				// Start training
 				abortOp = endCmd = false;
-				std::thread t(commandThread, net);
-				t.detach();
+				std::thread(commandThread, net).detach();
+				cout << "Testing in progres... " << endl << endl;
 				net->test();
 				abortOp = true;
 				cout << endl << "Testing finished. Press any key to continue..." << endl << endl;
@@ -606,6 +607,7 @@ void batchRunNeuralNetwork(NeuralNetwork *net) {
 		abortOp = endCmd = false;
 		std::thread t(commandThread, net);
 		t.detach();
+		cout << "Batch run in progres... " << endl << endl;
 		
 		results.clear();
 
