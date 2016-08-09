@@ -73,6 +73,9 @@ void DataSet::normalize() {
 		
 		std = sqrt(std / data.size());
 		
+		this->normalMean = mean;
+		this->normalStd = std;
+		
 		for (int j = 0; j < data.size(); j++) {
 			data.at(j)->inputs[i] = (data.at(j)->inputs[i] - mean) / std;
 		}

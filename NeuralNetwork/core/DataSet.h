@@ -30,6 +30,8 @@ public:
 	std::vector<DataRow *> data;
 	int n_inputs;
 	int n_outputs;
+	double normalMean;
+	double normalStd;
 	
 	void normalize();
 	

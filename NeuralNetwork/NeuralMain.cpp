@@ -119,7 +119,11 @@ void runNeuralNetwork() {
 					
 				cout << "No dataset found!" << endl;
 				
-			} else {
+			} else if (!net->trained) {
+				
+				cout << "Network not trained. Please train your network first." << endl;
+				
+			}  else {
 			
 				char verbose;
 				cout << "Verbose mode on? [y/n]: ";
@@ -141,6 +145,41 @@ void runNeuralNetwork() {
 				abortOp = true;
 				cout << endl << "Testing finished. Press any key to continue..." << endl << endl;
 				while (!endCmd);
+				
+				
+			}
+			
+		}  else if (!cmd.compare("run")) {
+			
+			if (net == NULL) {
+				
+				cout << "Network not initialized!" << endl;
+				
+			} else if (net->getTestingData() == NULL) {
+				
+				cout << "No dataset found!" << endl;
+				
+			} else if (!net->trained) {
+				
+				cout << "Network not trained. Please train your network first." << endl;
+				
+			} else {
+				
+				cout << "Type each input separated by a space or ENTER (" << net->getNumberInputs() << " inputs in total)" << endl;
+				
+				std::vector<double> in;
+				
+				for (int i = 0; i < net->getNumberInputs(); i++) {
+					
+					double val = 0.0;
+					cin >> val;
+					val = (val - net->getDataSet()->normalMean) / net->getDataSet()->normalStd;
+					in.push_back(val);
+					
+				}
+				
+				cout << endl << "Running network: " << endl;
+				net->run(in, true);
 				
 				
 			}
@@ -186,6 +225,7 @@ void runNeuralNetwork() {
 		cout << "\tdata:  Set network's dataset" << endl;
 		cout << "\ttrain: Train network" << endl;
 		cout << "\ttest: Test network" << endl;
+		cout << "\trun: Run the network for a determined input" << endl;
 		cout << "\tsave: Save network" << endl;
 		cout << "\tload: Load network" << endl;
 		cout << "\tview: View network" << endl;
