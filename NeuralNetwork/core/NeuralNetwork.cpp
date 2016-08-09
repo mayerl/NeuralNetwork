@@ -447,7 +447,6 @@ void NeuralNetwork::test() {
 			if (outClassIndex != expClassIndex) {
 				
 				cout << "NO";
-				errorCount++;
 				
 			} else {
 				
