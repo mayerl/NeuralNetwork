@@ -8,11 +8,13 @@
 
 #include <stdlib.h>
 #include <thread>
+#include <mutex>
 #include "NeuralHeader.h"
 
 using namespace std;
 bool abortOp = false;
 bool endCmd = false;
+std::mutex cmdMutex;
 
 struct threadTraining_args {
 	NeuralNetwork* net;
@@ -26,7 +28,9 @@ void commandThread(NeuralNetwork * net) {
 
 		if (abortOp == true) {
 
+			cmdMutex.lock();
 			endCmd = true;
+			cmdMutex.unlock();
 			break;
 
 		}
@@ -35,8 +39,10 @@ void commandThread(NeuralNetwork * net) {
 			if (c == 'q') {
 
 				net->abort();
+				cmdMutex.lock();
 				abortOp = true;
 				endCmd = true;
+				cmdMutex.unlock();
 
 			}
 			else if (c == 'v') {
@@ -101,12 +107,14 @@ void runNeuralNetwork() {
 				
 				// Start training
 				abortOp = endCmd = false;
-				std::thread(commandThread, net).detach();
+				std::thread t(commandThread, net);
 				cout << "Training in progres... " << endl << endl;
 				net->train();
+				cmdMutex.lock();
 				abortOp = true;
+				cmdMutex.unlock();
 				cout << endl << "Training finished. Press any key to continue..." << endl << endl;
-				while (!endCmd);
+				t.join();
 				
 			}
 			
@@ -140,12 +148,14 @@ void runNeuralNetwork() {
 				
 				// Start training
 				abortOp = endCmd = false;
-				std::thread(commandThread, net).detach();
+				std::thread t(commandThread, net);
 				cout << "Testing in progres... " << endl << endl;
 				net->test();
+				cmdMutex.lock();
 				abortOp = true;
+				cmdMutex.unlock();
 				cout << endl << "Testing finished. Press any key to continue..." << endl << endl;
-				while (!endCmd);
+				t.join();
 				
 				
 			}
@@ -606,7 +616,6 @@ void batchRunNeuralNetwork(NeuralNetwork *net) {
 		// Start training
 		abortOp = endCmd = false;
 		std::thread t(commandThread, net);
-		t.detach();
 		cout << "Batch run in progres... " << endl << endl;
 		
 		results.clear();
@@ -626,7 +635,7 @@ void batchRunNeuralNetwork(NeuralNetwork *net) {
 
 		abortOp = true;
 		cout << endl << "Batch finished. Press any key to continue..." << endl << endl;
-		while (!endCmd);
+		t.join();
 
 		cout << "Results: ";
 		for (unsigned int i = 0; i < results.size(); i++) {
