@@ -184,7 +184,7 @@ void runNeuralNetwork() {
 					
 					double val = 0.0;
 					cin >> val;
-					val = (val - net->getDataSet()->normalMean) / net->getDataSet()->normalStd;
+					val = (val - net->getDataSet()->normalMean.at(i)) / net->getDataSet()->normalStd.at(i);
 					in.push_back(val);
 					
 				}

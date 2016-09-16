@@ -30,6 +30,12 @@ DataSet::DataSet(Json::Value json) {
 	
 	this->n_inputs = json["n_inputs"].asInt();
 	this->n_outputs = json["n_outputs"].asInt();
+	this->normalMean.clear();
+	this->normalStd.clear();
+	for (int i = 0; i < n_inputs; i++) {
+		normalMean.push_back(json["normalMean"][i].asDouble());
+		normalStd.push_back(json["normalStd"][i].asDouble());
+	}
 	
 	for (Json::Value jRow : json["rows"]) {
 		
@@ -73,8 +79,8 @@ void DataSet::normalize() {
 		
 		std = sqrt(std / data.size());
 		
-		this->normalMean = mean;
-		this->normalStd = std;
+		this->normalMean.push_back(mean);
+		this->normalStd.push_back(std);
 		
 		for (int j = 0; j < data.size(); j++) {
 			data.at(j)->inputs[i] = (data.at(j)->inputs[i] - mean) / std;
@@ -88,6 +94,10 @@ Json::Value DataSet::generateJson() {
 	Json::Value json;
 	json["n_inputs"] = n_inputs;
 	json["n_outputs"] = n_outputs;
+	for (int i = 0; i < n_inputs; i++) {
+		json["normalMean"][i] = normalMean.at(i);
+		json["normalStd"][i] = normalStd.at(i);
+	}
 	
 	Json::Value jRowsArray;
 	
